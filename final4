@@ -1,0 +1,63 @@
+#Primero, asegúrate de tener Streamlit instalado:
+
+pip install streamlit
+
+#Luego, crea un archivo app.py con el siguiente código:
+
+Python
+
+import streamlit as st
+import requests
+
+# Títulos y descripción
+st.title("Interacciones Agonistas y Antagonistas con Receptores")
+st.write("Esta aplicación permite generar interacciones agonistas y antagonistas con receptores utilizando recursos de GitHub.")
+
+# Función para obtener datos del recurso proporcionado
+def obtener_datos(tipo_interaccion):
+    url = f"https://raw.githubusercontent.com/inefable12/herramientas_basicas/main/{tipo_interaccion}.txt"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.text
+    else:
+        return "Error al obtener los datos."
+
+# Botones para generar interacciones
+if st.button("Generar Interacción Agonista"):
+    datos_agonista = obtener_datos("agonista")
+    st.write("Interacción Agonista:")
+    st.text(datos_agonista)
+
+if st.button("Generar Interacción Antagonista"):
+    datos_antagonista = obtener_datos("antagonista")
+    st.write("Interacción Antagonista:")
+    st.text(datos_antagonista)
+
+#Este código crea una aplicación web con dos botones: uno para generar la interacción agonista y otro para la interacción antagonista. Los datos se obtienen del recurso proporcionado en GitHub.
+
+#Para ejecutar la aplicación, usa el siguiente comando en tu terminal:
+
+streamlit run app.py
+
+#Archivo requirements.txt
+#Para gestionar las dependencias, crea un archivo requirements.txt con el siguiente contenido:
+
+#streamlit
+#requests
+
+#Subir el proyecto a GitHub
+#Inicializa un repositorio en tu directorio de proyecto:
+git init
+
+#Añade los archivos al repositorio:
+git add .
+
+#Realiza un commit:
+git commit -m "Initial commit"
+
+#Conecta tu repositorio local con GitHub:
+git remote add origin https://github.com/yviguria/final3.git
+
+#Sube los cambios a GitHub:
+git push -u origin master
+
